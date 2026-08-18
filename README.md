@@ -28,8 +28,10 @@ stow -t ~ -R zsh
 | `bash` | `.bash_profile`, `.bash_completion`, `.profile` |
 | `git` | `.gitconfig`, `.gitignore_global` |
 | `vim` | `.vimrc` |
-| `tmux` | `.tmux.conf` |
+| `tmux` | `.tmux.conf`, `.tmux/` (plugins gitignored — run `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` then prefix+I on a fresh machine) |
 | `agents` | `AGENTS.md` (shared AI-harness rules; `~/.claude/CLAUDE.md` includes it) |
+| `herdr` | `.config/herdr/config.toml`, `.config/herdr/plugins.json` (logs/sockets/plugin cache stay unmanaged) |
+| `nvim` | `.config/nvim` — git **submodule** of [SumanthPal/nvim-dotfiles](https://github.com/SumanthPal/nvim-dotfiles); clone with `git clone --recurse-submodules` |
 
 ## Adding a new dotfile
 
@@ -43,5 +45,4 @@ For files under `~/.config/`, mirror the path inside the package (e.g. `~/dotfil
 
 ## Deliberately not stowed
 
-- `~/.config/nvim` — its own git repo, managed separately.
 - Secrets and machine state: `.netrc`, shell histories, `~/.claude/`, `~/.pi/`, `~/.codex/` (runtime state + auth tokens).
