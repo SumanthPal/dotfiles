@@ -1,6 +1,8 @@
 [user]
 	name = SumanthPal
 	email = sumanth@pallamreddy.com
+[credential]
+	helper = osxkeychain
 [core]
 	excludesfile = /Users/sumanth/.gitignore_global
 [difftool "sourcetree"]
