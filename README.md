@@ -43,6 +43,4 @@ cd ~/dotfiles && stow -t ~ <tool>
 
 For files under `~/.config/`, mirror the path inside the package (e.g. `~/dotfiles/foo/.config/foo/config.toml`).
 
-## Deliberately not stowed
 
-- Secrets and machine state: `.netrc`, shell histories, `~/.claude/`, `~/.pi/`, `~/.codex/` (runtime state + auth tokens).
