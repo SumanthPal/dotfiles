@@ -1,5 +1,3 @@
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
-export PATH="$PATH:/Users/sumanth/.foundry/bin"
-
-export PATH="$PATH:/Users/sumanth/.foundry/bin"
+export PATH="$PATH:$HOME/.foundry/bin"

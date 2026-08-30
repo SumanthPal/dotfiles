@@ -25,7 +25,9 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export GOOGLE_VERTEX_LOCATION=us-central1
 export GOOGLE_VERTEX_PROJECT=instinct-459021
-export ZOTGPT_API_KEY="93cdec49879a42d0ae260fb416e7489a"
+# Local secrets — not tracked (see zsh/.zshenv.local.example)
+[[ -f "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"
+[[ -f "$HOME/dotfiles/zsh/.zshenv.local" ]] && source "$HOME/dotfiles/zsh/.zshenv.local"
 # 3. Zsh Options
 setopt AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT AUTO_CD
 setopt APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST 
@@ -94,7 +96,7 @@ fo() {
 
 
 
-# Added by Antigravity CLI installer
-export PATH="/Users/sumanth/.local/bin:$PATH"
+# Added by Antigravity CLI installer (path already in main path block)
+# export PATH="/Users/sumanth/.local/bin:$PATH"  # deduped
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

@@ -54,9 +54,9 @@ type = "plugin_action"
 command = "worktrunk.open-current"
 description = "Worktree: switch / create from current branch"
 
-[[keys.command]]              # ai-rig: one tab, one pane per harness
-key = "prefix+a"
+[[keys.command]]              # orchestrator: claude (opus) + shell pane
+key = "prefix+o"
 type = "plugin_action"
-command = "ai-rig.open"
-description = "AI rig: open a pane per harness"
+command = "orch.open"
+description = "Orchestrator: claude (opus) + shell"
 

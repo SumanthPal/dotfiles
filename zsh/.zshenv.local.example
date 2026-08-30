@@ -1,0 +1,6 @@
+# Copy to ~/.zshenv.local or ~/dotfiles/zsh/.zshenv.local (both gitignored)
+# export ZOTGPT_API_KEY="your-key-here"
+# export GOOGLE_VERTEX_LOCATION=us-central1
+# export GOOGLE_VERTEX_PROJECT=your-project
+# export ANTHROPIC_API_KEY="..."
+# export OPENAI_API_KEY="..."

@@ -20,17 +20,30 @@ stow -t ~ -D zsh
 stow -t ~ -R zsh
 ```
 
+## Fresh machine
+
+```bash
+git clone --recurse-submodules https://github.com/SumanthPal/dotfiles.git ~/dotfiles
+cd ~/dotfiles && ./install.sh          # installs brew deps, stows, tpm, oh-my-zsh
+# or manual:
+brew bundle --file=Brewfile
+stow -t ~ zsh bash git vim tmux agents herdr nvim
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # then tmux → prefix+I
+```
+
+Secrets: copy `zsh/.zshenv.local.example` → `zsh/.zshenv.local` (gitignored) and add `ZOTGPT_API_KEY` etc.
+
 ## Packages
 
 | Package | Files |
 |---|---|
-| `zsh` | `.zshrc`, `.zprofile`, `.zshenv` |
+| `zsh` | `.zshrc`, `.zprofile`, `.zshenv` (secrets in `.zshenv.local`, gitignored) |
 | `bash` | `.bash_profile`, `.bash_completion`, `.profile` |
 | `git` | `.gitconfig`, `.gitignore_global` |
 | `vim` | `.vimrc` |
 | `tmux` | `.tmux.conf`, `.tmux/` (plugins gitignored — run `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` then prefix+I on a fresh machine) |
 | `agents` | `AGENTS.md` (shared AI-harness rules; `~/.claude/CLAUDE.md` includes it) |
-| `herdr` | `.config/herdr/config.toml`, `.config/herdr/plugins.json` (logs/sockets/plugin cache stay unmanaged) |
+| `herdr` | `.config/herdr/config.toml` (plugins.json/session.json/logs gitignored — runtime state) |
 | `nvim` | `.config/nvim` — git **submodule** of [SumanthPal/nvim-dotfiles](https://github.com/SumanthPal/nvim-dotfiles); clone with `git clone --recurse-submodules` |
 
 ## Adding a new dotfile

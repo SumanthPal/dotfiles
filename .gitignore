@@ -1,2 +1,9 @@
 .DS_Store
 tmux/.tmux/plugins/
+# herdr runtime state (mutated by herdr at runtime)
+herdr/.config/herdr/plugins.json
+herdr/.config/herdr/session.json
+herdr/.config/herdr/*.log
+# local secrets
+zsh/.zshenv.local
+*.local

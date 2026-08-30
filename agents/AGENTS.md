@@ -77,6 +77,21 @@ Prompting notes per harness:
 - **muse** — think in goals and plans; let `/plan` → `/grill` → `/goal` do the decomposition.
 - **agy** — high-level objectives with constraints (risk tolerance, models allowed).
 
+## Orchestrator / worker protocol (herdr)
+
+Inside herdr, agents work in two roles:
+
+- **Orchestrator** — a Claude (Opus) session named `orch`, opened with `prefix+o` in the repository's main checkout. It owns architecture docs, task dispatch, and PR review. It never edits feature code.
+- **Workers** — one agent per git worktree (created with worktrunk, `prefix+shift+g`), started manually with `herdr agent start <name> --kind pi|codex ...`. A worker owns its worktree's code and files the PR for it. Workers never touch architecture docs.
+
+Conventions:
+
+- Name workers after their branch or task (e.g. `wkr-auth`) at start, or with `herdr agent rename`, so the orchestrator can address them. Herdr has no built-in parent-child link between agents — naming plus worktree cwd is how the orchestrator recognizes its fleet.
+- Cross-harness messaging goes over the herdr CLI (see the `herdr` skill): `herdr agent list` for fleet state, `herdr agent read <name>` to inspect output, `herdr agent prompt <name> <text> --wait --until idle` to dispatch, `herdr agent wait <name> --until blocked` to watch for stalls.
+- Claude workers additionally push done/blocked/questions to `orch` directly via SendMessage instead of waiting to be polled.
+- A `blocked` worker means a human approval prompt — the orchestrator reports it rather than trying to answer it.
+- Routing for workers follows the table above: pi by default, codex for tightly scoped repo changes.
+
 ## Skills
 
 Canonical skills live in `~/.agents/skills`. Every harness's skills directory symlinks into it — edit the canonical copy, never a harness-local one, or the copies drift.
