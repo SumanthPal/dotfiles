@@ -23,11 +23,13 @@ export PATH
 export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
-export GOOGLE_VERTEX_LOCATION=us-central1
-export GOOGLE_VERTEX_PROJECT=instinct-459021
+# GOOGLE_VERTEX_* and other secrets → zsh/.zshenv.local (see .zshenv.local.example), not committed
 # Local secrets — not tracked (see zsh/.zshenv.local.example)
-[[ -f "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"
-[[ -f "$HOME/dotfiles/zsh/.zshenv.local" ]] && source "$HOME/dotfiles/zsh/.zshenv.local"
+if [[ -f "$HOME/.zshenv.local" ]]; then
+  source "$HOME/.zshenv.local"
+elif [[ -f "$HOME/dotfiles/zsh/.zshenv.local" ]]; then
+  source "$HOME/dotfiles/zsh/.zshenv.local"
+fi
 # 3. Zsh Options
 setopt AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT AUTO_CD
 setopt APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST 

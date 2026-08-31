@@ -1,0 +1,9 @@
+# herdr runtime state — stow should only manage config.toml
+# These files are created/mutated by herdr at runtime in ~/.config/herdr
+# and are gitignored; ignoring them here prevents stow conflicts / --adopt needs
+plugins\.json
+session\.json
+.*\.log
+\.plugins\.lock
+release-notes\.json
+plugins

@@ -32,7 +32,6 @@ brew "worktrunk"  # git worktree helper used with herdr
 brew "node"       # for nvm alternative / opencode
 brew "uv"         # python pkg manager
 brew "rustup"     # cargo (or brew "rust")
-brew "stow"
 
 # Fonts / optional
 # brew "font-jetbrains-mono-nerd-font"  # cask

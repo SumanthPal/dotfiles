@@ -46,11 +46,15 @@ fi
 # 5. Stow — link dotfiles into $HOME
 info "Stowing dotfiles..."
 brew list stow &>/dev/null || brew install stow
-# adopt herdr runtime files that exist before stow (plugins.json etc. are now gitignored)
+# herdr runtime files (plugins.json etc.) are gitignored; --adopt avoids conflicts if they exist pre-stow
 for pkg in zsh bash git vim tmux agents herdr nvim; do
   if [[ -d "$pkg" ]]; then
     echo "  stow $pkg"
-    stow -t "$HOME" -R "$pkg" 2>&1 | sed 's/^/    /' || true
+    if [[ "$pkg" == "herdr" ]]; then
+      stow --adopt -t "$HOME" -R "$pkg" 2>&1 | sed 's/^/    /' || true
+    else
+      stow -t "$HOME" -R "$pkg" 2>&1 | sed 's/^/    /' || true
+    fi
   fi
 done
 
@@ -89,6 +93,14 @@ if [[ ! -f "$DOTFILES_DIR/zsh/.zshenv.local" && ! -f "$HOME/.zshenv.local" ]]; t
   cp "$DOTFILES_DIR/zsh/.zshenv.local.example" "$DOTFILES_DIR/zsh/.zshenv.local"
   chmod 600 "$DOTFILES_DIR/zsh/.zshenv.local"
   echo "  → edit $DOTFILES_DIR/zsh/.zshenv.local and add ZOTGPT_API_KEY etc."
+  # ensure HOME link exists (stow already ran before this, so link manually to avoid drift on re-clone)
+  if [[ ! -e "$HOME/.zshenv.local" ]]; then
+    ln -sf "$DOTFILES_DIR/zsh/.zshenv.local" "$HOME/.zshenv.local" 2>/dev/null || true
+  fi
+fi
+# drift fix: if repo has .zshenv.local but HOME does not (e.g., after git pull that added the file), link it
+if [[ -f "$DOTFILES_DIR/zsh/.zshenv.local" && ! -e "$HOME/.zshenv.local" ]]; then
+  ln -sf "$DOTFILES_DIR/zsh/.zshenv.local" "$HOME/.zshenv.local" 2>/dev/null || true
 fi
 
 ok "Done. Restart shell or: exec zsh"

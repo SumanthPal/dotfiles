@@ -31,7 +31,7 @@ stow -t ~ zsh bash git vim tmux agents herdr nvim
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # then tmux → prefix+I
 ```
 
-Secrets: copy `zsh/.zshenv.local.example` → `zsh/.zshenv.local` (gitignored) and add `ZOTGPT_API_KEY` etc.
+Secrets: copy `zsh/.zshenv.local.example` → `zsh/.zshenv.local` (or `~/.zshenv.local`, both gitignored and sourced by `.zshrc` — see `install.sh` Step 10 which creates + links it idempotently) and add `ZOTGPT_API_KEY` / `GOOGLE_VERTEX_*` etc.
 
 ## Packages
 

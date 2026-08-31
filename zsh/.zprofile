@@ -1,7 +1,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# TeX (keep if you use LaTeX)
-export PATH="/Library/TeX/texbin:$PATH"
+# TeX handled in .zshrc consolidated PATH block (typeset -U path avoids duplication)
 
 # OrbStack integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
